@@ -273,10 +273,14 @@ void Dijkstra(Graph* g, int src) {
 		}
 	}
 
-	// 打印构造的最短路径
-	printf("Vertex   Distance from Source\n");
 	for (int i = 0; i < V; i++)
-		printf("%d \t\t %d\n", i, dist[i]);
+		if (dist[i] == INT_MAX)
+			dist[i] = -1;
+
+	// 打印构造的最短路径
+	printf("顶点\t距离\n");
+	for (int i = 0; i < V; i++)
+		printf("%d\t%d\n", i, dist[i]);
 
 	// 释放动态分配的内存
 	free(dist);
@@ -427,19 +431,19 @@ int main() {
 
 		switch (choice) {
 		case 1:
-			printf("输入开始搜索的顶点索引：");
+			printf("输入开始搜索的顶点：");
 			scanf("%d", &startVertex);
 			DFS(graph, startVertex);
 			printf("\n\n");
 			break;
 		case 2:
-			printf("输入开始搜索的顶点索引：");
+			printf("输入开始搜索的顶点：");
 			scanf("%d", &startVertex);
 			BFS(graph, startVertex);
 			printf("\n\n");
 			break;
 		case 3:
-			printf("输入开始顶点的索引：");
+			printf("输入开始顶点：");
 			scanf("%d", &startVertex);
 			Prim(graph, startVertex);
 			break;
@@ -448,6 +452,8 @@ int main() {
 			printf("\n\n");
 			break;
 		case 5:
+			printf("输入开始顶点：");
+			scanf("%d", &startVertex);
 			Dijkstra(graph, startVertex);
 			printf("\n\n");
 			break;
